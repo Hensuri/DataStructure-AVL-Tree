@@ -222,6 +222,27 @@ struct node *deletion(struct node *root, int data)
 	return root;
 }
 
+struct node *search(struct node *curr, int data)
+{
+	if(curr == NULL)
+	{
+		return NULL;
+	}
+	
+	if(curr->data > data)
+	{
+		search(curr->left, data);
+	}
+	else if(curr->data < data)
+	{
+		search(curr->right, data);
+	}
+	else
+	{
+		return curr;
+	}
+}
+
 
 // inorder traversal of the tree
 void inorder(struct node* root)
@@ -281,7 +302,17 @@ int main(){
 	//lengkapi juga searching pada AVL tree ini
 	
 	root = deletion(root, 16);
-
+	struct node *searching = search(root, 21);
+	
+	if(searching == NULL)
+	{
+		printf("Tidak ada data\n");
+	}
+	else
+	{
+		printf("Datanya ada\n");
+	}
+	
 	preorder(root);
 	return 0;
 }
